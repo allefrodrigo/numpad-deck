@@ -116,7 +116,8 @@ final class DeckStore: ObservableObject {
     // MARK: System
 
     func refreshAccessibility() {
-        let granted = AXIsProcessTrusted()
+        // Demo snapshots show the live state, with or without the permission.
+        let granted = Snapshot.demo || AXIsProcessTrusted()
         if granted != accessibilityGranted {
             accessibilityGranted = granted
             if granted { engine.start() }

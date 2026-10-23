@@ -46,6 +46,9 @@ enum Snapshot {
         set("plus", "E-mail", .text("dev.allef@exemplo.com"))
         set("div", "GitHub", .openURL(url: "github.com"))
         set("k0", "Pausa", .shortcut(keyCode: 49, modifiers: 0))
+        set("eq", "Cor", .tool(.colorPicker(format: .hex)))
+        set("minus", "Bloquear", .tool(.lockScreen))
+        set("dot", "Janelas", .tool(.missionControl))
         cfg.profiles[0] = p
         var figma = Profile(name: "Figma", bundleIDs: ["com.figma.Desktop"])
         figma.keys = p.keys.map { var k = $0; k.name = ""; k.action = .none; return k }

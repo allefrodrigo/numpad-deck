@@ -11,7 +11,7 @@ rm -rf "$APP"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 cp "$BIN" "$APP/Contents/MacOS/NumpadDeck"
 cp scripts/Info.plist "$APP/Contents/Info.plist"
-[ -f build/AppIcon.icns ] && cp build/AppIcon.icns "$APP/Contents/Resources/AppIcon.icns"
+[ -f assets/icon/AppIcon.icns ] && cp assets/icon/AppIcon.icns "$APP/Contents/Resources/AppIcon.icns"
 IDENTITY="-"
 security find-identity -v -p codesigning 2>/dev/null | grep -q "NumpadDeck Dev" && IDENTITY="NumpadDeck Dev"
 if ! codesign --force --sign "$IDENTITY" --identifier dev.allef.NumpadDeck "$APP" 2>&1 | grep -v "replacing existing signature"; then :; fi

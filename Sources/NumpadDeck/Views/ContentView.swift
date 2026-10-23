@@ -46,7 +46,7 @@ struct ContentView: View {
             }
             if Snapshot.dir != nil {
                 if let s = snapshotSlot { store.selectedSlotID = s }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) { Snapshot.runIfRequested(window: NSApp.windows.first { $0.isVisible }) }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) { Snapshot.runIfRequested(window: NSApp.windows.first { $0.isVisible && $0.title == "NumpadDeck" }) }
             }
         }
     }

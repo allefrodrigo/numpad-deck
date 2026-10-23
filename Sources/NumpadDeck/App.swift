@@ -24,6 +24,9 @@ struct NumpadDeckApp: App {
             .environmentObject(store)
         } label: {
             Image(systemName: store.config.enabled && store.accessibilityGranted ? "square.grid.3x3.fill" : "square.grid.3x3")
+                // macOS 27 no longer opens the Window scene at launch for menu-bar apps,
+                // so snapshot mode opens it here.
+                .onAppear { if Snapshot.dir != nil { openWindow(id: "main") } }
         }
     }
 }
