@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>NumpadDeck banner</title>
+<style>
+  :root {
+    --yellow: #EDD630; --blue: #2999DB; --green: #8A9A5B; --purple: #7B5EA7;
+    --salmon: #F5856B; --pink: #DB4D94; --brown: #AD755C; --gray: #6B6B70; --black: #1A1A1C;
+    --ink: #141414;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1280px; height: 420px; overflow: hidden; }
+  body {
+    font-family: -apple-system, "SF Pro Display", "Helvetica Neue", sans-serif;
+    background:
+      radial-gradient(900px 420px at 88% 50%, rgba(41,153,219,.16), transparent 60%),
+      radial-gradient(700px 380px at 62% 110%, rgba(219,77,148,.12), transparent 60%),
+      radial-gradient(600px 300px at 10% -20%, rgba(237,214,48,.08), transparent 60%),
+      linear-gradient(180deg, #19191b 0%, #0e0e10 100%);
+    color: #f4f4f5;
+    position: relative;
+  }
+  /* faint dot grid */
+  body::before {
+    content: ""; position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1px);
+    background-size: 22px 22px;
+    mask-image: linear-gradient(90deg, rgba(0,0,0,.9), rgba(0,0,0,.25) 55%, rgba(0,0,0,.6));
+  }
+
+  .left { position: absolute; left: 76px; top: 0; bottom: 0; width: 560px; display: flex; flex-direction: column; justify-content: center; }
+  .brand { display: flex; align-items: center; gap: 18px; }
+  .brand svg { width: 74px; height: 74px; filter: drop-shadow(0 10px 18px rgba(0,0,0,.5)); }
+  h1 { font-size: 64px; font-weight: 800; letter-spacing: -2px; line-height: 1; }
+  .tag { margin-top: 22px; font-size: 25px; line-height: 1.32; color: #c9c9cf; font-weight: 500; letter-spacing: -.2px; max-width: 520px; }
+  .tag b { color: #fff; font-weight: 700; }
+  .chips { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { font-size: 13px; font-weight: 600; padding: 5px 11px; border-radius: 999px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.10); color: #e4e4e7; display: inline-flex; align-items: center; gap: 7px; }
+  .chip i { width: 9px; height: 9px; border-radius: 3px; display: inline-block; }
+
+  .stage { position: absolute; right: 84px; top: 50%; transform: translateY(-44%); perspective: 1400px; }
+  .pill {
+    position: absolute; left: 50%; top: -46px; transform: translateX(-50%);
+    white-space: nowrap; font-size: 14px; font-weight: 500; color: #e4e4e7;
+    padding: 7px 14px; border-radius: 999px; background: rgba(40,40,44,.85);
+    border: 1px solid rgba(255,255,255,.10); box-shadow: 0 8px 24px rgba(0,0,0,.45);
+    display: flex; align-items: center; gap: 8px; z-index: 2;
+  }
+  .pill .dot { width: 8px; height: 8px; border-radius: 50%; background: #34c759; box-shadow: 0 0 10px #34c759; }
+  .pill .sep { color: #6b6b70; }
+  .pill .ev { color: #a1a1aa; }
+
+  .plate {
+    transform: rotateX(16deg) rotateY(-14deg) rotateZ(2deg);
+    background: linear-gradient(180deg, #2b2b2b, #1c1c1c);
+    border-radius: 26px; padding: 14px;
+    box-shadow: 0 40px 70px rgba(0,0,0,.65), 0 2px 0 rgba(255,255,255,.06) inset, 0 0 0 1px rgba(255,255,255,.05);
+    display: grid; grid-template-columns: repeat(5, 70px); grid-template-rows: repeat(4, 70px); gap: 7px;
+  }
+  .key {
+    border-radius: 13px; padding: 5px;
+    background: linear-gradient(180deg, #3b3b3e, #232325);
+    box-shadow: 0 3px 0 #111, 0 6px 10px rgba(0,0,0,.35);
+  }
+  .st {
+    width: 100%; height: 100%; border-radius: 10px; position: relative; padding: 7px 8px;
+    background: var(--c);
+    color: var(--fg, #fff);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.35);
+    display: flex; flex-direction: column; justify-content: space-between;
+    overflow: hidden;
+  }
+  .st::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255,255,255,.22), rgba(255,255,255,0) 45%, rgba(0,0,0,.08)); pointer-events: none; }
+  .g { font-size: 11px; font-weight: 600; opacity: .85; }
+  .n { font-size: 11.5px; font-weight: 800; letter-spacing: -.3px; white-space: nowrap; }
+  .ink { --fg: var(--ink); }
+  .pressed { transform: scale(.94); filter: brightness(1.12); box-shadow: 0 1px 0 #111; }
+  .pressed .st { box-shadow: inset 0 1px 0 rgba(255,255,255,.35), 0 0 0 2.5px #0a84ff; }
+</style>
+</head>
+<body>
+  <div class="left">
+    <div class="brand">
+      <svg viewBox="100 100 824 824" xmlns="http://www.w3.org/2000/svg">
+        <defs><linearGradient id="b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2c2c2e"/><stop offset="1" stop-color="#151517"/></linearGradient>
+        <linearGradient id="k" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a4a4e"/><stop offset="1" stop-color="#2e2e31"/></linearGradient></defs>
+        <rect x="100" y="100" width="824" height="824" rx="180" fill="url(#b)" stroke="rgba(255,255,255,.12)" stroke-width="6"/>
+        <rect x="212" y="212" width="176" height="176" rx="36" fill="url(#k)"/><rect x="236" y="236" width="128" height="128" rx="24" fill="#29a0dc"/>
+        <rect x="424" y="212" width="176" height="176" rx="36" fill="url(#k)"/><rect x="448" y="236" width="128" height="128" rx="24" fill="#29a0dc"/>
+        <rect x="636" y="212" width="176" height="176" rx="36" fill="url(#k)"/><rect x="660" y="236" width="128" height="128" rx="24" fill="#db4d94"/>
+        <rect x="212" y="424" width="176" height="176" rx="36" fill="url(#k)"/><rect x="236" y="448" width="128" height="128" rx="24" fill="#edd630"/>
+        <rect x="424" y="424" width="176" height="176" rx="36" fill="url(#k)"/><rect x="448" y="448" width="128" height="128" rx="24" fill="#edd630"/>
+        <rect x="636" y="424" width="176" height="176" rx="36" fill="url(#k)"/><rect x="660" y="448" width="128" height="128" rx="24" fill="#ad755c"/>
+        <rect x="212" y="636" width="388" height="176" rx="36" fill="url(#k)"/><rect x="236" y="660" width="340" height="128" rx="24" fill="#f5856b"/>
+        <rect x="636" y="636" width="176" height="176" rx="36" fill="url(#k)"/><rect x="660" y="660" width="128" height="128" rx="24" fill="#70c76b"/>
+      </svg>
+      <h1>NumpadDeck</h1>
+    </div>
+    <p class="tag">Um numpad USB com adesivos coloridos vira <b>um stream deck para o seu Mac</b>.</p>
+    <div class="chips">
+      <span class="chip"><i style="background:var(--blue)"></i>Abrir apps</span>
+      <span class="chip"><i style="background:var(--yellow)"></i>Atalhos</span>
+      <span class="chip"><i style="background:var(--green)"></i>Scripts</span>
+            <span class="chip"><i style="background:var(--brown)"></i>Ferramentas</span>
+      <span class="chip"><i style="background:var(--purple)"></i>Perfis por app</span>
+    </div>
+  </div>
+
+  <div class="stage">
+    <div class="pill"><span class="dot"></span>Ativo: Padrão · Terminal <span class="sep">·</span> <span class="ev">Script concluído</span></div>
+    <div class="plate">
+      <!-- landscape layout: the app's 90° rotation -->
+      <div class="key" style="grid-column:1;grid-row:1/span 2"><div class="st ink" style="--c:var(--salmon)"><span class="g">0</span><span class="n">Pausa</span></div></div>
+      <div class="key pressed" style="grid-column:2;grid-row:1"><div class="st ink" style="--c:var(--green)"><span class="g">1</span><span class="n">Deploy</span></div></div>
+      <div class="key" style="grid-column:3;grid-row:1"><div class="st ink" style="--c:var(--yellow)"><span class="g">4</span><span class="n">Gravar</span></div></div>
+      <div class="key" style="grid-column:4;grid-row:1"><div class="st" style="--c:var(--blue)"><span class="g">7</span><span class="n">Figma</span></div></div>
+      <div class="key" style="grid-column:5;grid-row:1"><div class="st" style="--c:var(--black)"><span class="g">num</span><span class="n"></span></div></div>
+
+      <div class="key" style="grid-column:2;grid-row:2"><div class="st ink" style="--c:var(--yellow)"><span class="g">2</span><span class="n">Build</span></div></div>
+      <div class="key" style="grid-column:3;grid-row:2"><div class="st ink" style="--c:var(--yellow)"><span class="g">5</span><span class="n">Print</span></div></div>
+      <div class="key" style="grid-column:4;grid-row:2"><div class="st" style="--c:var(--blue)"><span class="g">8</span><span class="n">Terminal</span></div></div>
+      <div class="key" style="grid-column:5;grid-row:2"><div class="st ink" style="--c:var(--green)"><span class="g">÷</span><span class="n">GitHub</span></div></div>
+
+      <div class="key" style="grid-column:1;grid-row:3"><div class="st" style="--c:var(--purple)"><span class="g">.</span><span class="n">Janelas</span></div></div>
+      <div class="key" style="grid-column:2;grid-row:3"><div class="st ink" style="--c:var(--yellow)"><span class="g">3</span><span class="n"></span></div></div>
+      <div class="key" style="grid-column:3;grid-row:3"><div class="st ink" style="--c:var(--yellow)"><span class="g">6</span><span class="n">Mutar</span></div></div>
+      <div class="key" style="grid-column:4;grid-row:3"><div class="st" style="--c:var(--blue)"><span class="g">9</span><span class="n">Notas</span></div></div>
+      <div class="key" style="grid-column:5;grid-row:3"><div class="st ink" style="--c:var(--salmon)"><span class="g">×</span><span class="n"></span></div></div>
+
+      <div class="key" style="grid-column:1/span 2;grid-row:4"><div class="st" style="--c:var(--black)"><span class="g">⏎</span><span class="n"></span></div></div>
+      <div class="key" style="grid-column:3;grid-row:4"><div class="st" style="--c:var(--brown)"><span class="g">=</span><span class="n">Cor</span></div></div>
+      <div class="key" style="grid-column:4;grid-row:4"><div class="st" style="--c:var(--pink)"><span class="g">+</span><span class="n">E-mail</span></div></div>
+      <div class="key" style="grid-column:5;grid-row:4"><div class="st" style="--c:var(--gray)"><span class="g">−</span><span class="n">Bloquear</span></div></div>
+    </div>
+  </div>
+</body>
+</html>
